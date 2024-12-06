@@ -5,7 +5,7 @@ interface InfiniteScroolContainerProps extends React.PropsWithChildren {
     className? : string
 }
 
-export default function InfiniteScroolContainer({
+export default function InfiniteScrollContainer({
     children, onBottomReached, className
 }: InfiniteScroolContainerProps){
     const { ref } = useInView({

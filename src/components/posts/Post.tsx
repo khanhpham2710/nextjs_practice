@@ -9,12 +9,12 @@ import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 // import Comments from "../comments/Comments";
-// import Linkify from "../Linkify";
+import Linkify from "../Linkify";
 import UserAvatar from "../UserAvatar";
-// import UserTooltip from "../UserTooltip";
+import PostMoreButton from "./PostMoreButton";
+import UserTooltip from "../UserTooltip";
 // import BookmarkButton from "./BookmarkButton";
 // import LikeButton from "./LikeButton";
-// import PostMoreButton from "./PostMoreButton";
 
 interface PostProps {
   post: PostData;
@@ -29,20 +29,20 @@ export default function Post({ post }: PostProps) {
     <article className="group/post space-y-3 rounded-2xl bg-card p-5 shadow-sm">
       <div className="flex justify-between gap-3">
         <div className="flex flex-wrap gap-3">
-          {/* <UserTooltip user={post.user}> */}
+          <UserTooltip user={post.user}>
             <Link href={`/users/${post.user.username}`}>
               <UserAvatar avatarUrl={post.user.avatarUrl} />
             </Link>
-          {/* </UserTooltip> */}
+          </UserTooltip>
           <div>
-            {/* <UserTooltip user={post.user}> */}
+            <UserTooltip user={post.user}>
               <Link
                 href={`/users/${post.user.username}`}
                 className="block font-medium hover:underline"
               >
                 {post.user.displayName}
               </Link>
-            {/* </UserTooltip> */}
+            </UserTooltip>
             <Link
               href={`/posts/${post.id}`}
               className="block text-sm text-muted-foreground hover:underline"
@@ -52,16 +52,16 @@ export default function Post({ post }: PostProps) {
             </Link>
           </div>
         </div>
-        {/* {post.user.id === user.id && (
+        {post.user.id === user.id && (
           <PostMoreButton
             post={post}
             className="opacity-0 transition-opacity group-hover/post:opacity-100"
           />
-        )} */}
+        )}
       </div>
-      {/* <Linkify> */}
+      <Linkify>
         <div className="whitespace-pre-line break-words">{post.content}</div>
-      {/* </Linkify> */}
+      </Linkify>
       {/* {!!post.attachments.length && (
         <MediaPreviews attachments={post.attachments} />
       )} */}
