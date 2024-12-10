@@ -86,29 +86,29 @@ export interface CommentsPage {
   previousCursor: string | null;
 }
 
-// export const notificationsInclude = {
-//   issuer: {
-//     select: {
-//       username: true,
-//       displayName: true,
-//       avatarUrl: true,
-//     },
-//   },
-//   post: {
-//     select: {
-//       content: true,
-//     },
-//   },
-// } satisfies Prisma.NotificationInclude;
+export const notificationsInclude = {
+  issuer: {
+    select: {
+      username: true,
+      displayName: true,
+      avatarUrl: true,
+    },
+  },
+  post: {
+    select: {
+      content: true,
+    },
+  },
+} satisfies Prisma.NotificationInclude;
 
-// export type NotificationData = Prisma.NotificationGetPayload<{
-//   include: typeof notificationsInclude;
-// }>;
+export type NotificationData = Prisma.NotificationGetPayload<{
+  include: typeof notificationsInclude;
+}>;
 
-// export interface NotificationsPage {
-//   notifications: NotificationData[];
-//   nextCursor: string | null;
-// }
+export interface NotificationsPage {
+  notifications: NotificationData[];
+  nextCursor: string | null;
+}
 
 export interface FollowerInfo {
   followers: number;

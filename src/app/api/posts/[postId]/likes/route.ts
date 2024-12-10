@@ -85,18 +85,18 @@ export async function POST(
         },
         update: {},
       }),
-    //   ...(loggedInUser.id !== post.userId
-    //     ? [
-    //         prisma.notification.create({
-    //           data: {
-    //             issuerId: loggedInUser.id,
-    //             recipientId: post.userId,
-    //             postId,
-    //             type: "LIKE",
-    //           },
-    //         }),
-    //       ]
-    //     : []),
+      ...(loggedInUser.id !== post.userId
+        ? [
+            prisma.notification.create({
+              data: {
+                issuerId: loggedInUser.id,
+                recipientId: post.userId,
+                postId,
+                type: "LIKE",
+              },
+            }),
+          ]
+        : []),
     ]);
 
     return new Response();
@@ -136,14 +136,14 @@ export async function DELETE(
           postId,
         },
       }),
-    //   prisma.notification.deleteMany({
-    //     where: {
-    //       issuerId: loggedInUser.id,
-    //       recipientId: post.userId,
-    //       postId,
-    //       type: "LIKE",
-    //     },
-    //   }),
+      prisma.notification.deleteMany({
+        where: {
+          issuerId: loggedInUser.id,
+          recipientId: post.userId,
+          postId,
+          type: "LIKE",
+        },
+      }),
     ]);
 
     return new Response();
