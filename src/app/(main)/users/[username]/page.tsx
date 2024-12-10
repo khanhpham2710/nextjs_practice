@@ -11,7 +11,7 @@ import { formatDate } from "date-fns";
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { cache } from "react";
-// import EditProfileButton from "./EditProfileButton";
+import EditProfileButton from "./EditProfileButton";
 import UserPosts from "./UserPosts";
 
 interface PageProps {
@@ -34,8 +34,9 @@ const getUser = cache(async (username: string, loggedInUserId: string) => {
 });
 
 export async function generateMetadata({
-  params: { username },
+  params,
 }: PageProps): Promise<Metadata> {
+  const { username } = await params;
   const { user: loggedInUser } = await validateRequest();
 
   if (!loggedInUser) return {};
@@ -47,7 +48,8 @@ export async function generateMetadata({
   };
 }
 
-export default async function Page({ params: { username } }: PageProps) {
+export default async function Page({ params }: PageProps) {
+  const { username } = await params;
   const { user: loggedInUser } = await validateRequest();
 
   if (!loggedInUser) {
@@ -113,11 +115,11 @@ async function UserProfile({ user, loggedInUserId }: UserProfileProps) {
             <FollowerCount userId={user.id} initialState={followerInfo} />
           </div>
         </div>
-        {/* {user.id === loggedInUserId ? (
+        {user.id === loggedInUserId ? (
           <EditProfileButton user={user} />
         ) : (
           <FollowButton userId={user.id} initialState={followerInfo} />
-        )} */}
+        )}
       </div>
       {user.bio && (
         <>

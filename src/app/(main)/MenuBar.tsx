@@ -16,15 +16,15 @@ export default async function MenuBar({ className }: MenuBarProps) {
 
   if (!user) return null;
 
-  const [unreadNotificationsCount, unreadMessagesCount] = await Promise.all([
-    // prisma.notification.count({
-    //   where: {
-    //     recipientId: user.id,
-    //     read: false,
-    //   },
-    // }),
-    // (await streamServerClient.getUnreadCount(user.id)).total_unread_count,
-  ]);
+  // const [unreadNotificationsCount, unreadMessagesCount] = await Promise.all([
+  //   prisma.notification.count({
+  //     where: {
+  //       recipientId: user.id,
+  //       read: false,
+  //     },
+  //   }),
+  //   (await streamServerClient.getUnreadCount(user.id)).total_unread_count,
+  // ]);
 
   return (
     <div className={className}>
